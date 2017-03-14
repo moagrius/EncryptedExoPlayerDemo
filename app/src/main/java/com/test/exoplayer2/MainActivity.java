@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
   public void encryptVideo(View view) {
     if (hasFile()) {
       Log.d(getClass().getCanonicalName(), "encrypted file found, no need to recreate");
-      //return;
+      return;
     }
     try {
       Cipher encryptionCipher = Cipher.getInstance(AES_TRANSFORMATION);
@@ -90,9 +90,8 @@ public class MainActivity extends AppCompatActivity {
       // you need to encrypt a video somehow with the same key and iv...  you can do that yourself and update
       // the ciphers, key and iv used in this demo, or to see it from top to bottom,
       // supply a url to a remote unencrypted file - this method will download and encrypt it
-      // http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_5mb.mp4
-      // http://techslides.com/demos/sample-videos/small.mp4
-      new DownloadAndEncryptFileTask("http://www.html5videoplayer.net/videos/toystory.mp4", mEncryptedFile, encryptionCipher).execute();
+      // this first argument needs to be that url, not null or empty...
+      new DownloadAndEncryptFileTask(null, mEncryptedFile, encryptionCipher).execute();
     } catch (Exception e) {
       e.printStackTrace();
     }

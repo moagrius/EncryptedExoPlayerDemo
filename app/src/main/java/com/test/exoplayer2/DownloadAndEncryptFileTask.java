@@ -24,6 +24,9 @@ public class DownloadAndEncryptFileTask extends AsyncTask<Void, Void, Void> {
   private Cipher mCipher;
 
   public DownloadAndEncryptFileTask(String url, File file, Cipher cipher) {
+    if (url == null || url.isEmpty()) {
+      throw new IllegalArgumentException("You need to supply a url to a clear MP4 file to download and encrypt, or modify the code to use a local encrypted mp4");
+    }
     mUrl = url;
     mFile = file;
     mCipher = cipher;
