@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_vertical_margin"
+    android:gravity="center"
+    tools:context="com.test.exoplayer2.MainActivity">
+
+  <Button
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Encrypt Video"
+      android:onClick="encryptVideo" />
+
+  <Button
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Play Video"
+      android:onClick="playVideo" />
+
+  <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+      android:id="@+id/simpleexoplayerview"
+      android:layout_width="320dp"
+      android:layout_height="180dp" />
+
+</LinearLayout>
