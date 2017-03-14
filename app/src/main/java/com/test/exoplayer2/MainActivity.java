@@ -78,10 +78,10 @@ public class MainActivity extends AppCompatActivity {
         && mEncryptedFile.length() > 0;
   }
 
-  private void encryptVideo(View view) {
-    if(hasFile()) {
+  public void encryptVideo(View view) {
+    if (hasFile()) {
       Log.d(getClass().getCanonicalName(), "encrypted file found, no need to recreate");
-      return;
+      //return;
     }
     try {
       Cipher encryptionCipher = Cipher.getInstance(AES_TRANSFORMATION);
@@ -90,13 +90,15 @@ public class MainActivity extends AppCompatActivity {
       // you need to encrypt a video somehow with the same key and iv...  you can do that yourself and update
       // the ciphers, key and iv used in this demo, or to see it from top to bottom,
       // supply a url to a remote unencrypted file - this method will download and encrypt it
-      new DownloadAndEncryptFileTask("", mEncryptedFile, encryptionCipher).execute();
+      // http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_5mb.mp4
+      // http://techslides.com/demos/sample-videos/small.mp4
+      new DownloadAndEncryptFileTask("http://www.html5videoplayer.net/videos/toystory.mp4", mEncryptedFile, encryptionCipher).execute();
     } catch (Exception e) {
       e.printStackTrace();
     }
   }
 
-  private void playVideo(View view) {
+  public void playVideo(View view) {
     DefaultBandwidthMeter bandwidthMeter = new DefaultBandwidthMeter();
     TrackSelection.Factory videoTrackSelectionFactory = new AdaptiveVideoTrackSelection.Factory(bandwidthMeter);
     TrackSelector trackSelector = new DefaultTrackSelector(videoTrackSelectionFactory);

@@ -36,7 +36,7 @@ public class DownloadAndEncryptFileTask extends AsyncTask<Void, Void, Void> {
     connection.connect();
 
     if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
-      throw new IOException("bork");
+      throw new IOException("server error: " + connection.getResponseCode() + ", " + connection.getResponseMessage());
     }
 
     InputStream inputStream = connection.getInputStream();
@@ -56,12 +56,17 @@ public class DownloadAndEncryptFileTask extends AsyncTask<Void, Void, Void> {
   }
 
   @Override
-  protected Void doInBackground(Void... sUrl) {
+  protected Void doInBackground(Void... params) {
     try {
       downloadAndEncrypt();
     } catch (Exception e) {
       e.printStackTrace();
     }
+    return null;
   }
 
+  @Override
+  protected void onPostExecute(Void aVoid) {
+    Log.d(getClass().getCanonicalName(), "done");
+  }
 }
